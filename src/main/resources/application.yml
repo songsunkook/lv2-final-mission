@@ -23,3 +23,7 @@ spring:
 jwt:
   secret: asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf
   expiration_time: 99999999
+
+client:
+  name_gen:
+    api_key: 3ea5298f21e2407e9ea4442df07ee050

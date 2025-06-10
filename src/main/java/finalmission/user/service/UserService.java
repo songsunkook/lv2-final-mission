@@ -9,6 +9,7 @@ import finalmission.user.domain.User;
 import finalmission.user.dto.UserRequest;
 import finalmission.user.dto.UserResponse;
 import finalmission.user.repository.UserRepository;
+import finalmission.util.NameGenerator;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -17,6 +18,7 @@ public class UserService {
 
     private final JwtProvider jwtProvider;
     private final UserRepository userRepository;
+    private final NameGenerator nameGenerator;
 
     public UserResponse.Login login(UserRequest.Login request) {
         User user = userRepository.getByEmail(request.email());
@@ -31,7 +33,7 @@ public class UserService {
     public void join(UserRequest.Join request) {
         String name = request.name();
         if (name == null) {
-            name = "임시"; // 외부 API 호출해서 랜덤 닉네임 지정하기
+            name = nameGenerator.randomName();
         }
         userRepository.save(new User(name, request.email(), request.password()));
     }
