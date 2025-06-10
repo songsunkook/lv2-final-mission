@@ -19,3 +19,7 @@ spring:
         show_sql: true
         format_sql: true
     defer-datasource-initialization: true
+
+jwt:
+  secret: asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf
+  expiration_time: 99999999

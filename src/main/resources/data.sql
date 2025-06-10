@@ -22,3 +22,10 @@ INSERT INTO operating_hour (shop_id, day_of_week, time)
 VALUES (2, 'SATURDAY', '21:00');
 INSERT INTO operating_hour (shop_id, day_of_week, time)
 VALUES (2, 'SATURDAY', '22:00');
+
+INSERT INTO users (name, email, password)
+VALUES ('고영희', 'meow@example.com', '1234');
+INSERT INTO users (name, email, password)
+VALUES ('모코', 'moko@example.com', '1234');
+INSERT INTO users (name, email, password)
+VALUES ('메론', 'melon@example.com', '1234');

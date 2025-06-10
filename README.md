@@ -99,6 +99,24 @@ Response Body:
 
 #### 로그인
 
+Path: `POST /users/login`
+
+Request Param:
+
+Request Body:
+```
+{
+    "email": "moko@example.com",
+    "password": "1234"
+}
+```
+
+Response Body:
+```
+{
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc0OTUzNTQ2NSwiZXhwIjoxODQ5NTM1NDY0fQ.choEAoZF0v_qoXcP1NRxOwy3RXObIxFkuvA27qf1xAE"
+}
+```
 
 ---
 
