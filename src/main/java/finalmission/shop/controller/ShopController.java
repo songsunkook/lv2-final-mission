@@ -1,15 +1,18 @@
-package finalmission.Shop.controller;
+package finalmission.shop.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import finalmission.Shop.dto.ShopResponse;
-import finalmission.Shop.service.ShopService;
+import finalmission.shop.dto.ShopResponse;
+import finalmission.shop.service.ShopService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -25,7 +28,17 @@ public class ShopController {
     }
 
     @GetMapping("/{shopId}")
-    public ResponseEntity<ShopResponse.Detail> getDetail(@PathVariable(name = "shopId") Long shopId) {
+    public ResponseEntity<ShopResponse.Detail> getDetail(
+            @PathVariable(name = "shopId") Long shopId
+    ) {
         return ResponseEntity.ok(shopService.getDetail(shopId));
+    }
+
+    @GetMapping("/{shopId}/times")
+    public ResponseEntity<List<LocalTime>> getAvailableTime(
+            @PathVariable(name = "shopId") Long shopId,
+            @RequestParam(name = "date") LocalDate date
+    ) {
+        return ResponseEntity.ok(shopService.getAvailableTime(shopId, date));
     }
 }

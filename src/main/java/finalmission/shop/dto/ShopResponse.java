@@ -1,4 +1,4 @@
-package finalmission.Shop.dto;
+package finalmission.shop.dto;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -8,11 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import finalmission.Shop.domain.OperatingHour;
-import finalmission.Shop.domain.Shop;
-import finalmission.Shop.domain.ShopType;
+import finalmission.shop.domain.OperatingHour;
+import finalmission.shop.domain.Shop;
+import finalmission.shop.domain.ShopType;
 
 public class ShopResponse {
 
@@ -45,7 +43,7 @@ public class ShopResponse {
 
         public record InnerOperatingHour(
                 DayOfWeek dayOfWeek,
-                @JsonFormat(pattern = "hh:mm") List<LocalTime> time
+                List<LocalTime> time
         ) {
 
             public static List<InnerOperatingHour> of(List<OperatingHour> operatingHours) {

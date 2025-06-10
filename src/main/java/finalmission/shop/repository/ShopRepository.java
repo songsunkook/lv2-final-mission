@@ -1,8 +1,8 @@
-package finalmission.Shop.repository;
+package finalmission.shop.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import finalmission.Shop.domain.Shop;
+import finalmission.shop.domain.Shop;
 
 public interface ShopRepository extends JpaRepository<Shop, Long> {
 

@@ -1,4 +1,4 @@
-package finalmission.Shop.domain;
+package finalmission.shop.domain;
 
 public enum ShopType {
     한식,

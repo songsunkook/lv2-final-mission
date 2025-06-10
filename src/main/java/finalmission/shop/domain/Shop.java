@@ -1,16 +1,14 @@
-package finalmission.Shop.domain;
+package finalmission.shop.domain;
 
-import java.time.DayOfWeek;
-import java.time.LocalTime;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,19 +16,19 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class OperatingHour {
+public class Shop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    Shop shop;
+    String name;
 
     @Enumerated(EnumType.STRING)
-    DayOfWeek dayOfWeek;
+    ShopType type;
 
-    LocalTime time;
+    String detail;
 
-    // Long possibleCount;
+    @OneToMany(mappedBy = "shop")
+    List<OperatingHour> operatingHours;
 }

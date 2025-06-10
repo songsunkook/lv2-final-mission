@@ -10,6 +10,8 @@
 
 Path: `GET /shops`
 
+Request Param:
+
 Request Body:
 ```
 
@@ -30,6 +32,8 @@ Response Body:
 
 Path: `GET /shops/{id}`
 
+Request Param:
+
 Request Body:
 ```
 
@@ -46,18 +50,21 @@ Response Body:
         {
             "dayOfWeek": "SATURDAY",
             "time": [
-                "08:00",
-                "09:00",
-                "10:00"
+                "08:00:00",
+                "09:00:00",
+                "10:00:00"
             ]
         }
     ]
 }
 ```
 
-#### 식당 예약 가능 날짜 확인
+#### 식당 예약 가능 시간 확인
 
-Path: `GET /shops`
+Path: `GET /shops/{id}/times`
+
+Request Param:
+`date=2025-06-10`
 
 Request Body:
 ```
@@ -66,7 +73,11 @@ Request Body:
 
 Response Body:
 ```
-
+[
+    "20:00:00",
+    "21:00:00",
+    "22:00:00"
+]
 ```
 
 #### 식당 예약(결제)
