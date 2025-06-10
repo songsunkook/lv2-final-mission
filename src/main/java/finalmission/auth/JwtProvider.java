@@ -48,7 +48,11 @@ public class JwtProvider {
 
     public Long getUserId(String token) {
         try {
-            return parseClaims(token).get("userId", Long.class);
+            Object userId = parseClaims(token).get("userId", Object.class);
+            if (userId instanceof Double d) {
+                return d.longValue();
+            }
+            return (Long)userId;
         } catch (ExpiredJwtException e) {
             throw new IllegalArgumentException("Expired JWT Token", e);
         } catch (UnsupportedJwtException e) {
