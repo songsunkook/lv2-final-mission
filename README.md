@@ -4,18 +4,18 @@
 
 ## 제공 API
 
-### 맛집
+### 식당
 
-#### 맛집 목록 조회
+#### 식당 목록 조회
 
 Path: `GET /shops`
 
-Request:
+Request Body:
 ```
 
 ```
 
-Response:
+Response Body:
 ```
 [
     {
@@ -26,38 +26,53 @@ Response:
 ]
 ```
 
-#### 맛집 상세 정보 조회
+#### 식당 상세 정보 조회
+
+Path: `GET /shops/{id}`
+
+Request Body:
+```
+
+```
+
+Response Body:
+```
+{
+    "id": 2,
+    "name": "뿡뿡이가 좋아요 중국집",
+    "type": "중식",
+    "detail": "사천짜장이 기가막혀요",
+    "innerOperatingHours": [
+        {
+            "dayOfWeek": "SATURDAY",
+            "time": [
+                "08:00",
+                "09:00",
+                "10:00"
+            ]
+        }
+    ]
+}
+```
+
+#### 식당 예약 가능 날짜 확인
 
 Path: `GET /shops`
 
-Request:
+Request Body:
 ```
 
 ```
 
-Response:
+Response Body:
 ```
 
 ```
 
-#### 맛집 예약 가능 날짜 확인
-
-Path: `GET /shops`
-
-Request:
-```
-
-```
-
-Response:
-```
-
-```
-
-#### 맛집 예약(결제)
+#### 식당 예약(결제)
 
 
-#### 맛집 예약 취소
+#### 식당 예약 취소
 
 
 #### 내 예약 목록 조회

@@ -1,12 +1,13 @@
 package finalmission.Shop.repository;
 
-import java.util.List;
-
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import finalmission.Shop.domain.Shop;
 
-public interface ShopRepository extends CrudRepository<Shop, Long> {
+public interface ShopRepository extends JpaRepository<Shop, Long> {
 
-    List<Shop> findAll();
+    default Shop getById(Long id) {
+        return findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상점입니다."));
+    }
 }

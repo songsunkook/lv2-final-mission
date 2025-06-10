@@ -1,8 +1,11 @@
 package finalmission.Shop.domain;
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,9 +27,10 @@ public class OperatingHour {
     @ManyToOne(fetch = FetchType.LAZY)
     Shop shop;
 
-    String dayOfWeek;
+    @Enumerated(EnumType.STRING)
+    DayOfWeek dayOfWeek;
 
     LocalTime time;
 
-    Long possibleCount;
+    // Long possibleCount;
 }

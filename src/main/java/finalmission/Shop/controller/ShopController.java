@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,11 @@ public class ShopController {
 
     @GetMapping
     public ResponseEntity<List<ShopResponse.Simple>> getAll() {
-        return ResponseEntity.ok().body(shopService.getAll());
+        return ResponseEntity.ok(shopService.getAll());
+    }
+
+    @GetMapping("/{shopId}")
+    public ResponseEntity<ShopResponse.Detail> getDetail(@PathVariable(name = "shopId") Long shopId) {
+        return ResponseEntity.ok(shopService.getDetail(shopId));
     }
 }
