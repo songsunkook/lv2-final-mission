@@ -8,9 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import finalmission.shop.domain.OperatingHour;
+import finalmission.shop.dto.ReservationResponse;
 import finalmission.shop.dto.ShopResponse;
 import finalmission.shop.repository.OperatingHourRepository;
+import finalmission.shop.repository.ReservationRepository;
 import finalmission.shop.repository.ShopRepository;
+import finalmission.user.domain.User;
+import finalmission.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -20,6 +24,8 @@ public class ShopService {
 
     private final ShopRepository shopRepository;
     private final OperatingHourRepository operatingHourRepository;
+    private final UserRepository userRepository;
+    private final ReservationRepository reservationRepository;
 
     public List<ShopResponse.Simple> getAll() {
         return shopRepository.findAll().stream()
@@ -43,5 +49,13 @@ public class ShopService {
         return operatingHour.stream()
                 .map(OperatingHour::getTime)
                 .toList();
+    }
+
+    // TODO 구현 중 ..
+    public ReservationResponse.Created reserve(Long userId, Long shopId, LocalDate date, LocalTime time) {
+        User user = userRepository.getById(userId);
+        // new Reservation(user, date, time);
+        // reservationRepository.save(null);
+        return null;
     }
 }

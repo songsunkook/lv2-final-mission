@@ -20,15 +20,18 @@ public class Shop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String name;
+    private String name;
 
     @Enumerated(EnumType.STRING)
-    ShopType type;
+    private ShopType type;
 
-    String detail;
+    private String detail;
 
     @OneToMany(mappedBy = "shop")
-    List<OperatingHour> operatingHours;
+    private List<OperatingHour> operatingHours;
+
+    @OneToMany(mappedBy = "shop")
+    private List<ShopReservation> shopReservations;
 }

@@ -7,10 +7,13 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import finalmission.auth.UserId;
+import finalmission.shop.dto.ReservationResponse;
 import finalmission.shop.dto.ShopResponse;
 import finalmission.shop.service.ShopService;
 import lombok.RequiredArgsConstructor;
@@ -40,5 +43,15 @@ public class ShopController {
             @RequestParam(name = "date") LocalDate date
     ) {
         return ResponseEntity.ok(shopService.getAvailableTime(shopId, date));
+    }
+
+    @PostMapping("/{shopId}")
+    public ResponseEntity<ReservationResponse.Created> reserve(
+            @UserId Long userId,
+            @PathVariable(name = "shopId") Long shopId,
+            @RequestParam(name = "date") LocalDate date,
+            @RequestParam(name = "time") LocalTime time
+    ) {
+        return ResponseEntity.ok(shopService.reserve(userId, shopId, date, time));
     }
 }
