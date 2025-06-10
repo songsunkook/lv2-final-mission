@@ -96,6 +96,25 @@ Response Body:
 
 #### 회원가입
 
+Path: `POST /users/join`
+
+Request Param:
+
+Request Body:
+```
+{
+    "name": "[optional] nickname",
+    "email": "moko@example.com",
+    "password": "1234"
+}
+```
+
+Response Body:
+```
+{
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc0OTUzNTQ2NSwiZXhwIjoxODQ5NTM1NDY0fQ.choEAoZF0v_qoXcP1NRxOwy3RXObIxFkuvA27qf1xAE"
+}
+```
 
 #### 로그인
 

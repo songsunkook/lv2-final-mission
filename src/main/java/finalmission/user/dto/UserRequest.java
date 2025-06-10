@@ -11,4 +11,12 @@ public class UserRequest {
     ) {
 
     }
+
+    public record Join(
+            String name,
+            String email,
+            String password
+    ) {
+
+    }
 }

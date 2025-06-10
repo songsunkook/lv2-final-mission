@@ -27,4 +27,12 @@ public class UserService {
 
         return new UserResponse.Login(jwtProvider.createToken(user));
     }
+
+    public void join(UserRequest.Join request) {
+        String name = request.name();
+        if (name == null) {
+            name = "임시"; // 외부 API 호출해서 랜덤 닉네임 지정하기
+        }
+        userRepository.save(new User(name, request.email(), request.password()));
+    }
 }

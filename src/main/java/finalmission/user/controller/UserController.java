@@ -22,4 +22,10 @@ public class UserController {
     public ResponseEntity<UserResponse.Login> login(@RequestBody UserRequest.Login request) {
         return ResponseEntity.ok().body(userService.login(request));
     }
+
+    @PostMapping("/join")
+    public ResponseEntity<Void> join(@RequestBody UserRequest.Join request) {
+        userService.join(request);
+        return ResponseEntity.ok().build();
+    }
 }
