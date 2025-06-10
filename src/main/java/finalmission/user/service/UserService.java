@@ -31,6 +31,9 @@ public class UserService {
     }
 
     public void join(UserRequest.Join request) {
+        if (userRepository.findByEmail(request.email()).isPresent()) {
+            throw new IllegalArgumentException("이미 존재하는 이메일입니다.");
+        }
         String name = request.name();
         if (name == null) {
             name = nameGenerator.randomName();
