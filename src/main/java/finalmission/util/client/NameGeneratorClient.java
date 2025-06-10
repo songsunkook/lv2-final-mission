@@ -13,16 +13,13 @@ public class NameGeneratorClient {
 
     private final String apiKey;
     private final RestClient restClient;
-    // private final ObjectMapper objectMapper;
 
     public NameGeneratorClient(
             @Value("${client.name_gen.api_key}") String apiKey,
-            RestClient restClient//,
-            // ObjectMapper objectMapper
+            RestClient restClient
     ) {
         this.apiKey = apiKey;
         this.restClient = restClient;
-        // this.objectMapper = objectMapper;
     }
 
     public List<String> getNames(int amount) {
