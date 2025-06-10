@@ -8,12 +8,51 @@
 
 #### 맛집 목록 조회
 
+Path: `GET /shops`
+
+Request:
+```
+
+```
+
+Response:
+```
+[
+    {
+        "id": 1,
+        "name": "칰칰폭폭 치킨집",
+        "type": "야식"
+    }
+]
+```
 
 #### 맛집 상세 정보 조회
 
+Path: `GET /shops`
+
+Request:
+```
+
+```
+
+Response:
+```
+
+```
 
 #### 맛집 예약 가능 날짜 확인
 
+Path: `GET /shops`
+
+Request:
+```
+
+```
+
+Response:
+```
+
+```
 
 #### 맛집 예약(결제)
 
