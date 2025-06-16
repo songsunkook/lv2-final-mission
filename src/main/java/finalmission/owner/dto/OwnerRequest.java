@@ -15,7 +15,7 @@ public class OwnerRequest {
 
     }
 
-    public record RegisterShop(
+    public record Shop(
         String name,
         ShopType type,
         String detail,

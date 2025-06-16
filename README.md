@@ -248,5 +248,53 @@ Response Body:
 }
 ```
 
+#### 식당 정보 수정
+
+Path: `POST /owners/register/shops/{id}`
+
+Request Body:
+```
+{
+  "name": "마라탕",
+  "type": "중식",
+  "detail": "마라탕먹어",
+  "operatingHours": [
+    {
+        "dayOfWeek": "MONDAY",
+        "time": "10:00"
+    },
+    {
+        "dayOfWeek": "FRIDAY",
+        "time": "12:01"
+    }
+  ]
+}
+```
+
+Response Body:
+```
+{
+    "id": 4,
+    "name": "마라탕",
+    "type": "중식",
+    "detail": "마라탕먹어",
+    "innerOperatingHours": [
+        {
+            "dayOfWeek": "MONDAY",
+            "time": [
+                "10:00:00"
+            ]
+        },
+        {
+            "dayOfWeek": "FRIDAY",
+            "time": [
+                "12:01:00"
+            ]
+        }
+    ]
+}
+```
+
 ## 걸린 시간
 최소 요구사항(사장님 제외): 5시간 + 1시간 10분
+전체 구현: 5시간 + 1시간 55분

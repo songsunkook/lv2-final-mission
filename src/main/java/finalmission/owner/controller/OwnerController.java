@@ -1,7 +1,9 @@
 package finalmission.owner.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,8 +33,17 @@ public class OwnerController {
     @PostMapping("/register/shops")
     public ResponseEntity<ShopResponse.Detail> registerShop(
             @UserId Long userId,
-            @RequestBody OwnerRequest.RegisterShop request
+            @RequestBody OwnerRequest.Shop request
     ) {
         return ResponseEntity.ok(ownerService.registerShop(userId, request));
+    }
+
+    @PutMapping("/shops/{shopId}")
+    public ResponseEntity<ShopResponse.Detail> updateShop(
+            @UserId Long userId,
+            @PathVariable(name = "shopId") Long shopId,
+            @RequestBody OwnerRequest.Shop request
+    ) {
+        return ResponseEntity.ok(ownerService.updateShop(userId, shopId, request));
     }
 }

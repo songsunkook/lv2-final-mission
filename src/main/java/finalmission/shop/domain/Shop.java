@@ -48,6 +48,10 @@ public class Shop {
         owner.setShop(this);
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setOperatingHours(List<OperatingHour> operatingHours) {
         this.operatingHours = operatingHours;
     }
