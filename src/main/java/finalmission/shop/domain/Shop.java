@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import finalmission.owner.domain.Owner;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -33,9 +34,21 @@ public class Shop {
 
     private String detail;
 
-    @OneToMany(mappedBy = "shop")
+    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OperatingHour> operatingHours = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)
     private Owner owner;
+
+    public Shop(String name, ShopType type, String detail, Owner owner) {
+        this.name = name;
+        this.type = type;
+        this.detail = detail;
+        this.owner = owner;
+        owner.setShop(this);
+    }
+
+    public void setOperatingHours(List<OperatingHour> operatingHours) {
+        this.operatingHours = operatingHours;
+    }
 }

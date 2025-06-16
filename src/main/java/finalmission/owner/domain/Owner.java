@@ -36,4 +36,8 @@ public class Owner {
         this.businessLicenseUrl = businessLicenseUrl;
         this.businessRegistrationNumber = businessRegistrationNumber;
     }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
 }

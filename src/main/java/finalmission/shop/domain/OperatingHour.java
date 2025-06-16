@@ -31,4 +31,10 @@ public class OperatingHour {
     private DayOfWeek dayOfWeek;
 
     private LocalTime time;
+
+    public OperatingHour(Shop shop, DayOfWeek dayOfWeek, LocalTime time) {
+        this.shop = shop;
+        this.dayOfWeek = dayOfWeek;
+        this.time = time;
+    }
 }

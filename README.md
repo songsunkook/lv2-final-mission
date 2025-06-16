@@ -201,18 +201,52 @@ Response Body:
 ```
 ```
 
-#### 로그인
-
-
 #### 식당 등록
 
+Path: `POST /owners/register/shops`
 
-#### 식당 예약 가능 요일/시간 변경
+Request Body:
+```
+{
+  "name": "마라마라마라탕",
+  "type": "중식",
+  "detail": "마라탕먹지마라탕",
+  "operatingHours": [
+    {
+        "dayOfWeek": "MONDAY",
+        "time": "10:00"
+    },
+    {
+        "dayOfWeek": "FRIDAY",
+        "time": "12:00"
+    }
+  ]
+}
+```
 
-
-#### 식당 활성화/비활성화
-
-
+Response Body:
+```
+{
+    "id": 4,
+    "name": "마라마라마라탕",
+    "type": "중식",
+    "detail": "마라탕먹지마라탕",
+    "innerOperatingHours": [
+        {
+            "dayOfWeek": "MONDAY",
+            "time": [
+                "10:00:00"
+            ]
+        },
+        {
+            "dayOfWeek": "FRIDAY",
+            "time": [
+                "12:00:00"
+            ]
+        }
+    ]
+}
+```
 
 ## 걸린 시간
-최소 기능(사장님 제외) 걸린 시간: 5시간 + 1시간 10분
+최소 요구사항(사장님 제외): 5시간 + 1시간 10분

@@ -1,11 +1,17 @@
 package finalmission.owner.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import finalmission.owner.domain.Owner;
 import finalmission.owner.dto.OwnerRequest;
 import finalmission.owner.repository.OwnerRepository;
+import finalmission.shop.domain.OperatingHour;
+import finalmission.shop.domain.Shop;
+import finalmission.shop.dto.ShopResponse;
+import finalmission.shop.repository.ShopRepository;
 import finalmission.user.domain.User;
 import finalmission.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +23,26 @@ public class OwnerService {
 
     private final UserRepository userRepository;
     private final OwnerRepository ownerRepository;
+    private final ShopRepository shopRepository;
 
     @Transactional
     public void register(Long userId, OwnerRequest.Register request) {
         User user = userRepository.getById(userId);
         ownerRepository.save(new Owner(user, request.businessLicenseUrl(), request.businessRegistrationNumber()));
+    }
+
+    @Transactional
+    public ShopResponse.Detail registerShop(Long userId, OwnerRequest.RegisterShop request) {
+        User user = userRepository.getById(userId);
+        Owner owner = ownerRepository.getByUser(user);
+
+        Shop shop = new Shop(request.name(), request.type(), request.detail(), owner);
+        List<OperatingHour> operatingHours = request.operatingHours().stream()
+                .map(operatingHour -> new OperatingHour(shop, operatingHour.dayOfWeek(), operatingHour.time()))
+                .toList();
+        shop.setOperatingHours(operatingHours);
+
+        shopRepository.save(shop);
+        return new ShopResponse.Detail(shop);
     }
 }
