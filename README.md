@@ -104,6 +104,14 @@ Response Body:
 
 #### 식당 예약 취소
 
+Path: `DELETE /shops/{id}`
+
+Request Param:
+`reservationId=1`
+
+Response Body:
+```
+```
 
 #### 내 예약 목록 조회
 

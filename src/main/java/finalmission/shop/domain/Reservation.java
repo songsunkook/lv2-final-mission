@@ -26,8 +26,6 @@ public class Reservation {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    // @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL)
-    // private List<ShopReservation> shopReservation = new ArrayList<>();
     @ManyToOne(fetch = FetchType.LAZY)
     private Shop shop;
 
@@ -39,7 +37,6 @@ public class Reservation {
         this.user = user;
         this.date = date;
         this.time = time;
-        // shopReservation.add(new ShopReservation(shop, this));
         this.shop = shop;
     }
 }

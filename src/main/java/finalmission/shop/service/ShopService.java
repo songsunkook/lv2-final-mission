@@ -55,6 +55,7 @@ public class ShopService {
                 .toList();
     }
 
+    @Transactional
     public ReservationResponse.Created reserve(Long userId, Long shopId, LocalDate date, LocalTime time) {
         User user = userRepository.getById(userId);
         Shop shop = shopRepository.getById(shopId);
@@ -72,7 +73,7 @@ public class ShopService {
         }
     }
 
-    private static void validateReserveTime(LocalDate date, LocalTime time, Shop shop) {
+    private void validateReserveTime(LocalDate date, LocalTime time, Shop shop) {
         DayOfWeek today = date.getDayOfWeek();
         List<OperatingHour> operatingHours = shop.getOperatingHours();
         if (
@@ -81,6 +82,20 @@ public class ShopService {
                         .noneMatch(operatingHour -> operatingHour.getTime().equals(time))
         ) {
             throw new IllegalArgumentException("예약 불가능한 시간입니다.");
+        }
+    }
+
+    @Transactional
+    public void cancel(Long userId, Long reservationId) {
+        User user = userRepository.getById(userId);
+        Reservation reservation = reservationRepository.getById(reservationId);
+        validateCancelReservation(reservation, user);
+        reservationRepository.delete(reservation);
+    }
+
+    private void validateCancelReservation(Reservation reservation, User user) {
+        if (reservation.getUser() != user) {
+            throw new IllegalArgumentException("다른 사람의 예약은 취소할 수 없습니다.");
         }
     }
 }
