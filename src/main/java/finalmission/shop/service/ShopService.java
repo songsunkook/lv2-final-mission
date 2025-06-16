@@ -98,4 +98,11 @@ public class ShopService {
             throw new IllegalArgumentException("다른 사람의 예약은 취소할 수 없습니다.");
         }
     }
+
+    public List<ReservationResponse.Simple> getMyReservations(Long userId) {
+        User user = userRepository.getById(userId);
+        return reservationRepository.findAllByUser(user).stream()
+                .map(ReservationResponse.Simple::new)
+                .toList();
+    }
 }

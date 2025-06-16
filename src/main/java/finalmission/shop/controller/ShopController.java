@@ -64,4 +64,11 @@ public class ShopController {
         shopService.cancel(userId, reservationId);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/mine")
+    public ResponseEntity<List<ReservationResponse.Simple>> myReservations(
+            @UserId Long userId
+    ) {
+        return ResponseEntity.ok(shopService.getMyReservations(userId));
+    }
 }

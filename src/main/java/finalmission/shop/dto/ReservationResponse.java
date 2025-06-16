@@ -28,4 +28,21 @@ public class ReservationResponse {
             );
         }
     }
+
+    public record Simple(
+            Long id,
+            ShopResponse.Simple shop,
+            LocalDate date,
+            LocalTime time
+    ) {
+
+        public Simple(Reservation reservation) {
+            this(
+                    reservation.getId(),
+                    new ShopResponse.Simple(reservation.getShop()),
+                    reservation.getDate(),
+                    reservation.getTime()
+            );
+        }
+    }
 }

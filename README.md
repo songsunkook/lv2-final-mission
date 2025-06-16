@@ -115,6 +115,23 @@ Response Body:
 
 #### 내 예약 목록 조회
 
+Path: `DELETE /shops/{id}`
+
+Response Body:
+```
+[
+    {
+        "id": 1,
+        "shop": {
+            "id": 1,
+            "name": "칰칰폭폭 치킨집",
+            "type": "야식"
+        },
+        "date": "2025-06-13",
+        "time": "12:00:00"
+    }
+]
+```
 
 ---
 
