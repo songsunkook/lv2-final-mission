@@ -185,9 +185,21 @@ Response Body:
 
 ### 식당 사장님
 
-
 #### 회원가입
 
+Path: `POST /owners/register`
+
+Request Body:
+```
+{
+    "businessLicenseUrl": "사업자등록증 링크",
+    "businessRegistrationNumber": "사업자등록번호"
+}
+```
+
+Response Body:
+```
+```
 
 #### 로그인
 
@@ -199,3 +211,8 @@ Response Body:
 
 
 #### 식당 활성화/비활성화
+
+
+
+## 걸린 시간
+최소 기능(사장님 제외) 걸린 시간: 5시간 + 1시간 10분
