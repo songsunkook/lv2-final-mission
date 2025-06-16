@@ -1,13 +1,17 @@
 package finalmission.shop.service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import finalmission.shop.domain.OperatingHour;
+import finalmission.shop.domain.Reservation;
+import finalmission.shop.domain.Shop;
 import finalmission.shop.dto.ReservationResponse;
 import finalmission.shop.dto.ShopResponse;
 import finalmission.shop.repository.OperatingHourRepository;
@@ -51,11 +55,32 @@ public class ShopService {
                 .toList();
     }
 
-    // TODO 구현 중 ..
     public ReservationResponse.Created reserve(Long userId, Long shopId, LocalDate date, LocalTime time) {
         User user = userRepository.getById(userId);
-        // new Reservation(user, date, time);
-        // reservationRepository.save(null);
-        return null;
+        Shop shop = shopRepository.getById(shopId);
+        validateReserveTime(date, time, shop);
+        validateReserve(date, time, shop);
+
+        Reservation reservation = new Reservation(user, date, time, shop);
+        reservation = reservationRepository.save(reservation);
+        return new ReservationResponse.Created(reservation);
+    }
+
+    private void validateReserve(LocalDate date, LocalTime time, Shop shop) {
+        if (reservationRepository.existsByShopAndDateAndTime(shop, date, time)) {
+            throw new IllegalArgumentException("이미 예약된 시간입니다.");
+        }
+    }
+
+    private static void validateReserveTime(LocalDate date, LocalTime time, Shop shop) {
+        DayOfWeek today = date.getDayOfWeek();
+        List<OperatingHour> operatingHours = shop.getOperatingHours();
+        if (
+                operatingHours.stream()
+                        .filter(operatingHour -> Objects.equals(operatingHour.getDayOfWeek(), today))
+                        .noneMatch(operatingHour -> operatingHour.getTime().equals(time))
+        ) {
+            throw new IllegalArgumentException("예약 불가능한 시간입니다.");
+        }
     }
 }

@@ -1,5 +1,6 @@
 package finalmission.shop.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -30,8 +31,8 @@ public class Shop {
     private String detail;
 
     @OneToMany(mappedBy = "shop")
-    private List<OperatingHour> operatingHours;
+    private List<OperatingHour> operatingHours = new ArrayList<>();
 
-    @OneToMany(mappedBy = "shop")
-    private List<ShopReservation> shopReservations;
+    // @OneToMany(mappedBy = "shop")
+    // private List<ShopReservation> shopReservations;
 }

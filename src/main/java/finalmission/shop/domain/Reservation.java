@@ -2,8 +2,6 @@ package finalmission.shop.domain;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import finalmission.user.domain.User;
 import jakarta.persistence.Entity;
@@ -12,7 +10,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,17 +26,20 @@ public class Reservation {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @OneToMany(mappedBy = "reservation")
-    private List<ShopReservation> shopReservation = new ArrayList<>();
+    // @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL)
+    // private List<ShopReservation> shopReservation = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Shop shop;
 
     private LocalDate date;
 
     private LocalTime time;
 
-    public Reservation(User user, List<ShopReservation> shopReservation, LocalDate date, LocalTime time) {
+    public Reservation(User user, LocalDate date, LocalTime time, Shop shop) {
         this.user = user;
-        this.shopReservation = shopReservation;
         this.date = date;
         this.time = time;
+        // shopReservation.add(new ShopReservation(shop, this));
+        this.shop = shop;
     }
 }
