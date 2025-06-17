@@ -29,3 +29,6 @@ INSERT INTO users (name, email, password)
 VALUES ('모코', 'moko@example.com', '1234');
 INSERT INTO users (name, email, password)
 VALUES ('메론', 'melon@example.com', '1234');
+
+INSERT INTO owner (user_id, business_license_url, business_registration_number)
+VALUES (1, 'license', '123-45-67890');

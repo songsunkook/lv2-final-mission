@@ -208,6 +208,7 @@ Path: `POST /owners/register/shops`
 Request Body:
 ```
 {
+  "id": 1,
   "name": "마라마라마라탕",
   "type": "중식",
   "detail": "마라탕먹지마라탕",
@@ -250,7 +251,7 @@ Response Body:
 
 #### 식당 정보 수정
 
-Path: `POST /owners/register/shops/{id}`
+Path: `PUT /owners/shops/{id}`
 
 Request Body:
 ```
@@ -297,4 +298,5 @@ Response Body:
 
 ## 걸린 시간
 최소 요구사항(사장님 제외): 5시간 + 1시간 10분
-전체 구현: 5시간 + 1시간 55분
+사장님까지 구현: 5시간 + 1시간 55분
+전체 구현(테스트 포함): 5시간 + 2시간 40분

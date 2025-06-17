@@ -6,9 +6,12 @@ TRUNCATE TABLE users;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
-ALTER TABLE shop ALTER COLUMN id RESTART WITH 1;
-ALTER TABLE operating_hour ALTER COLUMN id RESTART WITH 1;
-ALTER TABLE users ALTER COLUMN id RESTART WITH 1;
+ALTER TABLE shop
+    ALTER COLUMN id RESTART WITH 1;
+ALTER TABLE operating_hour
+    ALTER COLUMN id RESTART WITH 1;
+ALTER TABLE users
+    ALTER COLUMN id RESTART WITH 1;
 
 INSERT INTO shop (name, type, detail)
 VALUES ('칰칰폭폭 치킨집', '야식', '맛있어요. 살안찝니다.');
@@ -41,3 +44,6 @@ INSERT INTO users (name, email, password)
 VALUES ('모코', 'moko@example.com', '1234');
 INSERT INTO users (name, email, password)
 VALUES ('메론', 'melon@example.com', '1234');
+
+INSERT INTO owner (user_id, business_license_url, business_registration_number)
+VALUES (1, 'license', '123-45-67890');
