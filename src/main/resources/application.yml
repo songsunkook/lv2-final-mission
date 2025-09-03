@@ -27,3 +27,9 @@ jwt:
 client:
   name_gen:
     api_key: 3ea5298f21e2407e9ea4442df07ee050
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
